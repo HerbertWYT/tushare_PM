@@ -13,8 +13,10 @@ from tushare.stock import cons as ct
 from tushare.stock import ref_vars as rv
 import json
 import re
-from pandas.util.testing import _network_error_classes
+# from pandas.util.testing import _network_error_classes
+# from pandas.testing import _network_error_classes
 import time
+import http.client
 import tushare.stock.fundamental as fd
 from tushare.util.netbase import Client
 
@@ -23,6 +25,7 @@ try:
 except ImportError:
     from urllib2 import urlopen, Request
 
+_network_error_classes = (IOError, http.client.HTTPException, TimeoutError)
 
 def get_industry_classified(standard='sina'):
     """

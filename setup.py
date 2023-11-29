@@ -69,7 +69,8 @@ def read_install_requires():
             'lxml>=3.8.0',
             'simplejson>=3.16.0',
             'msgpack>=0.5.6',
-            'pyzmq>=16.0.0'
+            'pyzmq>=16.0.0',
+            'pytdx'
             ]
     return reqs
 

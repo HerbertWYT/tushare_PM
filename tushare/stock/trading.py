@@ -17,7 +17,8 @@ import numpy as np
 import datetime
 from tushare.stock import cons as ct
 import re
-from pandas.compat import StringIO
+# from pandas.compat import StringIO
+from io import StringIO
 from tushare.util import dateu as du
 from tushare.util.formula import MA
 import os
@@ -694,10 +695,10 @@ def get_k_data(code=None, start='', end='',
         raise TypeError('ktype input error.')
     data = pd.DataFrame()
     for url in urls:
-        data = data.append(_get_k_data(url, dataflag, 
+        data = pd.concat([data,_get_k_data(url, dataflag, 
                                        symbol, code,
                                        index, ktype,
-                                       retry_count, pause), 
+                                       retry_count, pause)], 
                            ignore_index=True)
     if ktype not in ct.K_MIN_LABELS:
         if ((start is not None) & (start != '')) & ((end is not None) & (end != '')):
